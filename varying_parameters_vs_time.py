@@ -1,3 +1,7 @@
+"""
+This file runs time-tests on ILP_solver by only varying one parameter.
+Graphs are also generated of results.
+"""
 import matplotlib.pyplot as plt
 from ILP_solver.ILP_solver import solve_TCP_instance
 from graph_tools.graph_generator import generate_graph
@@ -12,6 +16,7 @@ def modulate_num_nodes():
 	print num_nodes, times
 	plot(num_nodes, times, "Number of Nodes", "Time (Seconds)", "TCP Runtime for Nodes vs Time ")
 
+
 def modulate_edge_percentage_active():
 	percentage_edges_active = [0.05*i for i in range(1,21)]
 	times = []
@@ -21,6 +26,7 @@ def modulate_edge_percentage_active():
 	print percentage_edges_active, times
 	plot(percentage_edges_active, times, "Percentage of Edges Active", "Time (Seconds)", "TCP Runtime for Percentage of Edge Active vs Time ")
 
+
 def modulate_node_percentage_active():
 	percentage_nodes_active = [0.05*i for i in range(1,21)]
 	times = []
@@ -29,6 +35,7 @@ def modulate_node_percentage_active():
 		times.append(solve_TCP_instance(graph, existence_for_node_time, connectivity_demand, time_output=True))
 	print percentage_nodes_active, times
 	plot(percentage_nodes_active, times, "Percentage of Edges Active", "Time (Seconds)", "TCP Runtime for Percentage of Edge Active vs Time ")
+
 
 def plot(x,y, x_axis, y_axis, title):
 	plt.title(title)

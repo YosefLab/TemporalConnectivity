@@ -7,10 +7,10 @@ import random
 
 def generate_graph(num_nodes=100, edge_connectivity=1.0, active_time_percent=1.0, max_time=3, weight_distribution=(1.0,1.0)):
 	"""
-	:param num_nodes: Number of nodes in graph
-	:param edge_connectivity: We begin with a fully connected graph, and remove each edge based on (1-edge_connectivity)*100%
-	:param active_time_percent: We begin with a fully active graph, and remove time points per vertice based on (1-edge_connectivity)*100%
-	:param weight_distribution: What range to choose random weights from
+	:param num_nodes: number of nodes in graph
+	:param edge_connectivity: the probability there exists an edge between two vertices edge_connectivity*100%
+	:param active_time_percent: the probability a vertex v is active at timepoint t active_time_percent*100%
+	:param weight_distribution: range for random weighst
 	:return: graph, existence_for_node_time (dictionary: V x T -> 1/0), connectivity_demand (source, destination)
 	"""
 	graph = networkx.DiGraph()
@@ -18,7 +18,7 @@ def generate_graph(num_nodes=100, edge_connectivity=1.0, active_time_percent=1.0
 	for node in nodes:
 		graph.add_node(node)
 
-	source,destination = random.sample(nodes,2)
+	source, destination = random.sample(nodes,2)
 
 	for begin in nodes:
 		for end in nodes:
@@ -43,10 +43,15 @@ def generate_graph(num_nodes=100, edge_connectivity=1.0, active_time_percent=1.0
 				is_active = int(random.random() < active_time_percent)
 				existence_for_node_time[(node, i)] = is_active
 
-
 	return graph, existence_for_node_time, (source, destination)
 
 
 def generate_nodes(num_nodes=100):
+	"""
+	Returns a list from {1,...,num_nodes}
+
+	:param num_nodes: length of list
+	:return:
+	"""
 	return list(range(1,num_nodes+1))
 

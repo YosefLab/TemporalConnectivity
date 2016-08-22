@@ -2,22 +2,23 @@ from gurobipy import *
 import networkx
 import time as python_time
 sys.path.append("..")
-from utils import execution_time,print_edges_in_graph
+from utils import execution_time, print_edges_in_graph
 
 epsilon = 0.000000001
 
 def solve_TCP_instance(graph, existence_for_node_time, connectivity_demand, detailed_output=True, time_output=False):
-	"""
-	:param
-	Given a simple TCP problem instance:
-		- A directed graph with attribute 'weight' on all edges
-		- A dictionary from (node, time) to existence {True, False}
-		- A connectivity demand (source, demand) OR list of connectivity demands[..(source,destination)..]
-			ASSUMPTION: Each demand starts at time 0 and ends at time |T|
-		- A
 
-	returns a minimum weight path that satisfies the demand.
 	"""
+	Given a simple TCP problem instance, returns a minimum weight subgraph that satisfies the demand.
+
+	:param graph: a directed graph with attribute 'weight' on all edges
+	:param existence_for_node_time: a dictionary from (node, time) to existence {True, False}
+	:param connectivity_demand: a connectivity demand (source, demand)
+	:param detailed_output: flag which when True will print the edges in the optimal subgraph
+	:param time_output: flag which when True will return the time taken to obtain result rather than the optimal subgraph
+	:return:
+	"""
+
 	start_time = python_time.time()
 
 	# MODEL SETUP
@@ -114,15 +115,18 @@ def solve_TCP_instance(graph, existence_for_node_time, connectivity_demand, deta
 		return end_time - start_time
 	return subgraph if model.status == GRB.status.OPTIMAL else None
 
-def solve_multi_TCP_instance(graph, existence_for_node_time, source, destinations, detailed_output=True, time_output=False):
+def solve_multi_destination_TCP_instance(graph, existence_for_node_time, source, destinations, detailed_output=True, time_output=False):
 	"""
-	Given a simple TCP problem instance:
-		- A directed graph with attribute 'weight' on all edges
-		- A dictionary from (node, time) to existence {True, False}
-		- A connectivity demand (source, demand) OR list of connectivity demands[..(source,destination)..]
-			ASSUMPTION: Each demand starts at time 0 and ends at time |T|
+	Given a multi-destination TCP problem instance, returns a minimum weight subgraph that satisfies the demand.
 
-	returns a minimum weight path that satisfies the demand.
+
+	:param graph: a directed graph with attribute 'weight' on all edges
+	:param existence_for_node_time: a dictionary from (node, time) to existence {True, False}
+	:param source: the source node in the graph
+	:param destinations: all destination nodes in the graph
+	:param detailed_output: flag which when True will print the edges in the optimal subgraph
+	:param time_output: flag which when True will return the time taken to obtain result rather than the optimal subgraph
+	:return:
 	"""
 	start_time = python_time.time()
 
