@@ -59,7 +59,6 @@ def test_mTCP_instance():
 
 def test_generated_TCP():
 	graph, existence_for_node_time, connectivity_demand = generate_graph(num_nodes=10000, edge_connectivity=.001, max_time=3, active_time_percent=0.1)
-	print "Trust"
 	solve_TCP_instance(graph, existence_for_node_time, connectivity_demand)
 	print "Connectivity Demand: " + str(connectivity_demand)
 	return existence_for_node_time, graph

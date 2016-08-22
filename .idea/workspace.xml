@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b021817d-f251-42d2-a238-027514c05089" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ILP_solver/ILP_solver.py" afterPath="$PROJECT_DIR$/ILP_solver/ILP_solver.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ILP_solver_tests.py" afterPath="$PROJECT_DIR$/ILP_solver_tests.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/graph_tools/graph_generator.py" afterPath="$PROJECT_DIR$/graph_tools/graph_generator.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gurobi.log" afterPath="$PROJECT_DIR$/gurobi.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils.py" afterPath="$PROJECT_DIR$/utils.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/varying_parameters_vs_time.py" afterPath="$PROJECT_DIR$/varying_parameters_vs_time.py" />
     </list>
     <ignored path="temporal_connectivity.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,8 +45,8 @@
       <file leaf-file-name="ILP_solver_tests.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ILP_solver_tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="60" column="124" selection-start-line="60" selection-start-column="124" selection-end-line="60" selection-end-column="124" />
+            <state relative-caret-position="257">
+              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
               <folding>
                 <element signature="e#0#90#0" expanded="true" />
               </folding>
@@ -149,8 +140,8 @@
         <option value="$PROJECT_DIR$/varying_parameters_vs_time.py" />
         <option value="$PROJECT_DIR$/utils.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/ILP_solver_tests.py" />
         <option value="$PROJECT_DIR$/ILP_solver/ILP_solver.py" />
+        <option value="$PROJECT_DIR$/ILP_solver_tests.py" />
       </list>
     </option>
   </component>
@@ -967,7 +958,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#33#0" expanded="true" />
+            <element signature="e#0#33#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1051,8 +1042,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ILP_solver_tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="60" column="124" selection-start-line="60" selection-start-column="124" selection-end-line="60" selection-end-column="124" />
+        <state relative-caret-position="257">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
           <folding>
             <element signature="e#0#90#0" expanded="true" />
           </folding>
