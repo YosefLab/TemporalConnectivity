@@ -228,6 +228,13 @@ def solve_multi_destination_TCP_instance(graph, existence_for_node_time, source,
 
 
 def retreive_and_print_subgraph(model, graph, edge_variables, detailed_output):
+	"""
+
+	:param model: Optimized gurobi model
+	:param graph: a directed graph with attribute 'weight' on all edges
+	:param edge_variables: dictionary of edge models
+	:param detailed_output: flag which when True will print the edges in the optimal subgraph
+	"""
 	# Recover minimal subgraph
 	subgraph = networkx.DiGraph()
 	if model.status == GRB.status.OPTIMAL:
