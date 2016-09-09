@@ -45,6 +45,63 @@ def generate_graph(num_nodes=100, edge_connectivity=1.0, active_time_percent=1.0
 
 	return graph, existence_for_node_time, (source, destination)
 
+def generate_scale_free_graph(num_nodes=100, active_time_percent=1.0, max_time=3, weight_distribution=(1.0,1.0)):
+	graph = networkx.scale_free_graph(num_nodes)
+	graph = networkx.DiGraph(graph)
+	edgeSet = set(graph.edges())
+	print "Number of edges: " + str(len(edgeSet))
+	# num_iteraitons = 0
+	# while(len(graph.edges()) < 10*graph.nodes()):
+	# 	begin, end = random.sample(graph.nodes(), 2)
+	# 	num_iteraitons += 1
+	# 	if (begin, end) in edgeSet:
+	# 		continue
+	# 	else:
+	# 		if random.random() < graph.degree(begin)/(1.0 * len(edgeSet)):
+	# 			print num_iteraitons
+	# 			weight = random.uniform(weight_distribution[0], weight_distribution[1])
+	# 			graph.add_edge(begin, end, weight=weight)
+	# 			edgeSet.add((begin, end))
+
+
+
+
+
+	edge = graph.edges()[0]
+
+	print edge
+	print "weight: " + str(graph[edge[0]][edge[1]])
+	for edge in graph.edges():
+		if edge[0] != edge[1]:
+			graph[edge[0]][edge[1]]['weight'] = random.uniform(weight_distribution[0], weight_distribution[1])
+		else:
+			graph[edge[0]][edge[1]]['weight'] = 0.001
+	edge = graph.edges()[0]
+	print "weight: " + str(graph[edge[0]][edge[1]])
+	print len(graph.edges())
+
+
+	source, destination = random.sample(graph.nodes(), 2)
+	while not networkx.has_path(graph, source, destination):
+		print source, destination
+		source, destination = random.sample(graph.nodes(), 2)
+	print "Demand: " + str(source) + ", " + str(destination)
+	print "Shortest Path length: " + str(networkx.shortest_path_length(graph, source, destination))
+	existence_for_node_time = {(source,0):1, (destination,max_time):1}
+	for i in range(1, max_time+1):
+		existence_for_node_time[(source, i)] = 0
+
+	for i in range(0, max_time):
+		existence_for_node_time[(destination, i)] = 0
+
+	for node in graph.nodes():
+		for i in range(0, max_time+1):
+			if node != source and node != destination:
+				is_active = int(random.random() < active_time_percent)
+				existence_for_node_time[(node, i)] = is_active
+
+	print len(graph.edges())
+	return graph, existence_for_node_time, (source, destination)
 
 def generate_nodes(num_nodes=100):
 	"""
