@@ -42,7 +42,6 @@ def solve_multi_destination_TCP_instance(model, graph, edge_variables, detailed_
 	"""
 	Given a multi-destination TCP problem instance, returns a minimum weight subgraph that satisfies the demand.
 
-
 	:param graph: a directed graph with attribute 'weight' on all edges
 	:param model: a Gurobi model to be optimized
 	:param edge_variables: a dictionary of variables corresponding to the variables d_v,w
@@ -236,7 +235,6 @@ def generate_mTCP_model(graph, existence_for_node_time, source, destinations):
 				)
 
 
-
 	# OBJECTIVE
 	# Minimize total path weight
 	objective_expression = quicksum(edge_variables[u, v] * graph[u][v]['weight'] for u, v in graph.edges_iter())
@@ -245,16 +243,24 @@ def generate_mTCP_model(graph, existence_for_node_time, source, destinations):
 	return model, edge_variables
 
 
-def add_optimal_solution_constraint(model, subgraph, edge_variables):
+def add_optimal_solution_constraint(model, subgraph, edge_variables, strictly_optimal=False, additional_constraint=0):
 	"""
 
 	:param model: a Gurobi model to be optimized
 	:param subgraph: a directed graph with attribute 'weight' on all edges, which contains the previous
 					 optimal solution for the model
 	:param edge_variables: a dictionary of variables corresponding to the variables d_v,w
+	:param strictly_optimal: flag which when True does not allow subgraphs that are supergraphs of that in subgraph
+	:param additional_constraint: additional amount to subtract from optimal solution, eg if optimal solution had length(5)
+							 allow us to only use 3 edges from the subgraph if additional_constraint = 2
 	:return:
 	"""
-	model.addConstr(quicksum(edge_variables[u, v] for u,v in subgraph.edges()) <= len(subgraph.edges())-1)
+	if not strictly_optimal:
+		model.addConstr(quicksum(edge_variables[u, v] for u,v in subgraph.edges()) <= max(0, len(subgraph.edges())-1-additional_constraint))
+	else:
+		model.addConstr(quicksum(edge_variables[u, v] for u,v in subgraph.edges()) - quicksum(edge for edge in edge_variables.values()) <= max(0, len(subgraph.edges())-1-additional_constraint))
+
+
 	return model
 
 
